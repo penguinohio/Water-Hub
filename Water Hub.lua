@@ -4,6 +4,7 @@ if game.PlaceId == 8750997647 then
     getgenv().autowin1 = true
     getgenv().autowin = true
     getgenv().autorebirth = true
+    getgenv().ws = true
 
     function autowin()
             while getgenv().autowin == true do
@@ -21,6 +22,14 @@ if game.PlaceId == 8750997647 then
     end
 end
 
+    function ws()
+        while getgenv().ws == true do
+            task.wait()
+            game.Players.localPlayer.Character.Humanoid.WalkSpeed = 50
+
+    end
+end
+
     function autorebirth()
         while getgenv().autorebirth == true do
             task.wait(0.5)
@@ -32,10 +41,14 @@ end
     end
 end
 
-    
-
     local Tab = Window:MakeTab({
         Name = "main",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Tabmisc = Window:MakeTab({
+        Name = "misc",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
@@ -95,6 +108,21 @@ end
           end    
     })
 
+    Tabmisc:AddButton({
+        Name = "inf yileld",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+          end    
+    })
+
+    Tabmisc:AddToggle({
+        Name = "ws 50",
+        Default = false,
+        Callback = function(Value)
+            getgenv().ws = Value
+            ws()
+        end    
+    })
     
 
 
